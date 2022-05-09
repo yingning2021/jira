@@ -1,10 +1,9 @@
-import { FormEvent } from "react";
 import { useAuth } from "../context/auth-context";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { LongButton } from "./index";
 
 export const RegisterScreen = () => {
-  const { login, user, register } = useAuth();
+  const { register } = useAuth();
 
   const handleSubmit = async (values: {
     username: string;
