@@ -2,15 +2,15 @@ import { useAuth } from "../context/auth-context";
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({onError}: {onError: (error: Error) => void}) => {
   const { register } = useAuth();
 
-  const handleSubmit = async (values: {
+  const handleSubmit =  (values: {
     username: string;
     password: string;
   }) => {
     // 阻止默认的提交行为
-    await register(values);
+      register(values).catch(e => onError(e));
   };
   return (
     <Form onFinish={handleSubmit}>

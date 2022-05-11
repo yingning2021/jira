@@ -2,7 +2,7 @@ import { useAuth } from "../context/auth-context";
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({onError}: {onError: (error: Error) => void}) => {
   const { login } = useAuth();
 
   const handleSubmit = async (values: {
@@ -10,7 +10,7 @@ export const LoginScreen = () => {
     password: string;
   }) => {
     // 阻止默认的提交行为
-    await login(values);
+      login(values).catch(e => onError(e));
   };
   return (
     <Form onFinish={handleSubmit}>

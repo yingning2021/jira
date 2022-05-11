@@ -22,7 +22,7 @@ export const login = async (data: { username: string; password: string }) => {
     return handleUserResponse(await response.json());
   } else {
     // 类似于抛出异常
-    return Promise.reject(data);
+    return Promise.reject(await response.json());
   }
 };
 
@@ -41,7 +41,7 @@ export const register = async (data: {
     return handleUserResponse(await response.json());
   } else {
     // 类似于抛出异常
-    return Promise.reject(data);
+    return Promise.reject(await response.json());
   }
 };
 export const logout = async () => {
